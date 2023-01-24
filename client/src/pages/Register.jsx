@@ -9,12 +9,16 @@ export default function Register() {
 
   const registerUser = async (e) => {
     e.preventDefault();
-    await axios.post("/register", {
-      name,
-      email,
-      password,
-    });
-    alert("Registration successful. Now You can log in");
+    try {
+      await axios.post("/register", {
+        name,
+        email,
+        password,
+      });
+      alert("Registration successful. Now You can log in");
+    } catch (err) {
+      alert("Registrotion failed. Please try again later");
+    }
   };
 
   return (
