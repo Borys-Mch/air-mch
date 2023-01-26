@@ -120,6 +120,33 @@ export default function Places() {
                 <span>Private enterance</span>
               </label>
             </div>
+
+            <h2 className="text-2xl mt-4">Extra info</h2>
+            <p className="text-gray-500 text-sm">House rules, etc</p>
+            <textarea />
+
+            <h2 className="text-2xl mt-4">Check in&out time, max guests</h2>
+            <p className="text-gray-500 text-sm">
+              Add check in and out time, remember to have some time window for
+              cleaning the room between guests
+            </p>
+            <div className="grid gap-2 sm:grid-cols-3">
+              <div>
+                <h3 className="mt-2 -mb-1">Check in time</h3>
+                <input type="text" placeholder="13:00" />
+              </div>
+              <div>
+                <h3 className="mt-2 -mb-1">Check out time</h3>
+                <input type="text" placeholder="10:00" />
+              </div>
+              <div>
+                <h3 className="mt-2 -mb-1">Max number of guests</h3>
+                <input type="text" placeholder="3" />
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <button className="primary my-4 max-w-md">Save</button>
+            </div>
           </form>
         </div>
       )}
