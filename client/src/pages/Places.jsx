@@ -38,6 +38,24 @@ export default function Places() {
     setPhotoLink("");
   };
 
+  const uploadPhoto = (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      data.append("photos", files[i]);
+    }
+    axios
+      .post("/upload", data, {
+        headers: { "Content-type": "multipart/form-data" },
+      })
+      .then((response) => {
+        const { data: filenames } = response;
+        setAddedPhotos((prev) => {
+          return [...prev, ...filenames];
+        });
+      });
+  };
+
   return (
     <div>
       {action !== "new" && (
@@ -86,17 +104,31 @@ export default function Places() {
                 Add&nbsp;photo
               </button>
             </div>
-            <div className="mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            <div className="mt-2 grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
               {addedPhotos.length > 0 &&
-                addedPhotos.map((link) => <div>{link}</div>)}
-              <button className="flex gap-1 justify-center border bg-transparent rounded-2xl p-8 text-2xl text-gray-600">
+                addedPhotos.map((link) => (
+                  <div>
+                    <img
+                      className="rounded-2xl"
+                      src={"http://localhost:8000/uploads/" + link}
+                      alt=""
+                    />
+                  </div>
+                ))}
+              <label className="flex gap-1 justify-center items-center border bg-transparent rounded-2xl p-2 text-2xl text-gray-600 cursor-pointer">
+                <input
+                  type="file"
+                  multiple
+                  onChange={uploadPhoto}
+                  className="hidden"
+                />
                 <IconsReactjs
                   icon={"upload-cloud-outline"}
                   fontSize={"1.8rem"}
                   color={"#4b5563"}
                 />
                 Upload
-              </button>
+              </label>
             </div>
 
             {preInput("Description", "Description of the place")}
