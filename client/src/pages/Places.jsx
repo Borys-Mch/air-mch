@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import IconsReactjs from "icons-reactjs";
 
 import Perks from "../components/Perks";
+import axios from "axios";
 
 export default function Places() {
   const { action } = useParams();
@@ -25,6 +26,17 @@ export default function Places() {
       {inputDesc(desc)}
     </>
   );
+
+  const addPhotoByLink = async (e) => {
+    e.preventDefault();
+    const { data: filename } = await axios.post("/upload-by-link", {
+      link: photoLink,
+    });
+    setAddedPhotos((prev) => {
+      return [...prev, filename];
+    });
+    setPhotoLink("");
+  };
 
   return (
     <div>
@@ -68,11 +80,15 @@ export default function Places() {
                 onChange={(e) => setPhotoLink(e.target.value)}
                 placeholder={"Add using a link ...jpg"}
               />
-              <button className="bg-gray-200 px-4 rounded-2xl">
+              <button
+                onClick={addPhotoByLink}
+                className="bg-gray-200 px-4 rounded-2xl">
                 Add&nbsp;photo
               </button>
             </div>
-            <div className="mt-3 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            <div className="mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+              {addedPhotos.length > 0 &&
+                addedPhotos.map((link) => <div>{link}</div>)}
               <button className="flex gap-1 justify-center border bg-transparent rounded-2xl p-8 text-2xl text-gray-600">
                 <IconsReactjs
                   icon={"upload-cloud-outline"}
