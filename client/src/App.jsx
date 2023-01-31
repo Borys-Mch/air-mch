@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import { UserContextProvider } from "./components/UserContext";
 import Layout from "./Layout";
 import Profile from "./pages/Profile";
