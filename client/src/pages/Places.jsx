@@ -13,7 +13,7 @@ export default function Places() {
   }, []);
 
   return (
-    <div>
+    <div className=" max-w-screen-xl w-full mx-auto">
       <AccountNav />
       <div className="text-center">
         <Link

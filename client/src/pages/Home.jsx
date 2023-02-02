@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [places, setPlaces] = useState([]);
@@ -13,7 +14,7 @@ export default function Home() {
     <div className="mt-8 gap-x-6 gap-y-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
       {places.length > 0 &&
         places.map((place) => (
-          <div key={place._id}>
+          <Link to={"/place/" + place._id} key={place._id}>
             <div className="bg-gray-500 mb-2 rounded-2xl flex">
               {place.photos?.[0] && (
                 <img
@@ -29,7 +30,7 @@ export default function Home() {
               <span className="text-sm font-bold">${place.price} </span> per
               night
             </div>
-          </div>
+          </Link>
         ))}
     </div>
   );

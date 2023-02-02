@@ -81,7 +81,7 @@ export default function PlacesForm() {
   }
 
   return (
-    <div>
+    <div className=" max-w-screen-xl w-full mx-auto">
       <AccountNav />
       <form onSubmit={savePlace}>
         {preInput(
