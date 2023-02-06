@@ -1,6 +1,6 @@
 # Clone of Airbnb site
 
-<img src="https://raw.githubusercontent.com/Borys-Mch/restaurant/master/screenshot.png" alt="Screenshot">
+<img src="https://raw.githubusercontent.com/Borys-Mch/air-mch/master/screenshot.png" alt="Screenshot">
 
 ## Front-End
 
